@@ -14,9 +14,9 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::findOrFail($id);
+        
         $comments = $post->comments;
         return view('posts.show', ['post' => $post, 'comments' => $comments]);
     }
@@ -47,9 +47,9 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        $post = Post::findOrFail($id);
+    
         $post->delete();
 
         return redirect()->route('posts.index')->with('message', 'Post was deleted');
