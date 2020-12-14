@@ -10,5 +10,6 @@
         @endforeach
     </ul>
     <a href="{{ route('posts.create') }}">Create Post</a>
+    {{ $posts->links() }}
 @endsection
 
