@@ -15,7 +15,14 @@
             <li>User ID:<a href="{{ route('users.singleuser', ['user' => $comment->user_id]) }}">{{ $comment->user_id }}</a> - {{ $comment->content }}</li>
         @endforeach
     </ul>
-
+    
+    <form method="POST" action="{{ route('comments.store', ['post' => $post]) }}">
+        @csrf
+        <p>Enter a comment: <input type="text" name="content"
+            value="{{ old('content') }}"></p>
+        <input type="submit" value="Post Comment">
+    </form>
+    
     <form method="POST"
         action="{{ route('posts.destroy', [$post]) }}">
         @csrf
