@@ -12,7 +12,7 @@
     <h2>Comments</h2>
     <ul>
         @foreach ($comments as $comment)
-            <li>User ID:<a href="{{ route('users.singleuser', ['user' => $comment->user_id]) }}">{{ $comment->user_id }}</a> - {{ $comment->content }}</li>
+            <li>User:<a href="{{ route('users.singleuser', ['user' => $comment->user_id]) }}">{{ $comment->user->name }}</a> - {{ $comment->content }}</li>
         @endforeach
     </ul>
     
@@ -22,13 +22,13 @@
             value="{{ old('content') }}"></p>
         <input type="submit" value="Post Comment">
     </form>
-    
+    @auth
     <form method="POST"
         action="{{ route('posts.destroy', [$post]) }}">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>
     </form>
-
+    @endauth
     <p><a href="{{ route('posts.index') }}">Back</a></p>
 @endsection
