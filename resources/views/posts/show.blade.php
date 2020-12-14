@@ -12,7 +12,7 @@
     <h2>Comments</h2>
     <ul>
         @foreach ($comments as $comment)
-            <li>User ID:<a href="{{ route('users.singleuser', ['id' => $comment->user_id]) }}">{{ $comment->user_id }}</a> - {{ $comment->content }}</li>
+            <li>User ID:<a href="{{ route('users.singleuser', ['user' => $comment->user_id]) }}">{{ $comment->user_id }}</a> - {{ $comment->content }}</li>
         @endforeach
     </ul>
 

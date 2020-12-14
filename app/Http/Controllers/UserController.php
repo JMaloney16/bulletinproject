@@ -13,10 +13,11 @@ class UserController extends Controller
         return view('users.index', ['users' => $users]);
     }
 
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
+        
         $comments = $user->comments;
         return view('users.show', ['user' => $user, 'comments' => $comments]);
     }
+
 }
