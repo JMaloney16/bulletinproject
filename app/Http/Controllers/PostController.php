@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -22,7 +23,8 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        $users = User::orderBy('name', 'asc')->get();
+        return view('posts.create', ['users' => $users]);
     }
 
     public function store(Request $request){
@@ -30,17 +32,26 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|max:2000',
-            'imagepath' => 'nullable'
+            'imagepath' => 'nullable',
+            'userid' => 'required'
         ]);
         
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
         $p->imagepath = $validatedData['imagepath'];
-        $p->user_id=1;
+        $p->user_id = $validatedData['userid'];
         $p->save();
 
         session()->flash('message', 'Post created.');
         return redirect()->route('posts.index');
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('posts.index')->with('message', 'Post was deleted');
     }
 }

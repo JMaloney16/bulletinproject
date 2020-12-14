@@ -15,4 +15,13 @@
             <li>User ID:<a href="{{ route('users.singleuser', ['id' => $comment->user_id]) }}">{{ $comment->user_id }}</a> - {{ $comment->content }}</li>
         @endforeach
     </ul>
+
+    <form method="POST"
+        action="{{ route('posts.destroy', ['id' => $post->id]) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete</button>
+    </form>
+
+    <p><a href="{{ route('posts.index') }}">Back</a></p>
 @endsection
