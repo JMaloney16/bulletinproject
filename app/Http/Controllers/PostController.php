@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -32,15 +33,14 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|max:2000',
-            'imagepath' => 'nullable',
-            'userid' => 'required'
+            'imagepath' => 'nullable'
         ]);
         
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
         $p->imagepath = $validatedData['imagepath'];
-        $p->user_id = $validatedData['userid'];
+        $p->user_id = Auth::id();
         $p->save();
 
         session()->flash('message', 'Post created.');
