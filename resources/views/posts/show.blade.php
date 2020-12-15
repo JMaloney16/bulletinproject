@@ -15,13 +15,14 @@
             <li>User:<a href="{{ route('users.singleuser', ['user' => $comment->user_id]) }}">{{ $comment->user->name }}</a> - {{ $comment->content }}</li>
         @endforeach
     </ul>
-    
+    @auth
     <form method="POST" action="{{ route('comments.store', ['post' => $post]) }}">
         @csrf
         <p>Enter a comment: <input type="text" name="content"
             value="{{ old('content') }}"></p>
         <input type="submit" value="Post Comment">
     </form>
+    @endauth
     @if (Auth::id() == $post->user->id)
     <form method="POST"
         action="{{ route('posts.destroy', [$post]) }}">

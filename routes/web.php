@@ -33,7 +33,7 @@ Route::get('posts/create', [PostController::class, 'create'])->name('posts.creat
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.singlepost');
 Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
-Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
 
 
 
