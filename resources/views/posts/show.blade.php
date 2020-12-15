@@ -22,13 +22,13 @@
             value="{{ old('content') }}"></p>
         <input type="submit" value="Post Comment">
     </form>
-    @auth
+    @if (Auth::id() == $post->user->id)
     <form method="POST"
         action="{{ route('posts.destroy', [$post]) }}">
         @csrf
         @method('DELETE')
         <button type="submit">Delete</button>
     </form>
-    @endauth
+    @endif
     <p><a href="{{ route('posts.index') }}">Back</a></p>
 @endsection
