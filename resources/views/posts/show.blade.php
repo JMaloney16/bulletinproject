@@ -4,7 +4,9 @@
     
 @section('content')
     <h1>{{ $post->title }}</h1>
+    @if(!empty($post->imagepath))
     <img src={{ $post->imagepath }}>
+    @endif
     <ul>
         <li>Content: {{ $post->content }}</li>
         <li>Imagepath: {{$post->imagepath ?? 'n/a' }} </li>
