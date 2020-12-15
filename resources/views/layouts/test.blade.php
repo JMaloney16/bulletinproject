@@ -6,6 +6,7 @@
     </head>
     <body>
         <h1>Billboard - @yield('title')</h1>
+        <a href="{{ route('dashboard') }}">Login</a>
         @if ($errors->any())
             <div>
                 Errors: 
