@@ -15,7 +15,7 @@
     </head>
     <body class="font-sans antialiased">
         
-        <div class="min-h-screen bg-gray-100">
+        <div class="bg-gray-100">
             @if (Route::has('login'))
                     @auth
                         @livewire('navigation-dropdown')
@@ -32,7 +32,7 @@
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <h1>Billboard - @yield('title')</h1>
+                    <h1 class="font-semibold text-xl text-gray-800 leading-tight">Billboard - @yield('title')</h1>
                 </div>
             </header>
 
@@ -55,6 +55,8 @@
                 @yield('content')
             </div> 
             </main>
+
+        
         </div>
         @stack('modals')
 

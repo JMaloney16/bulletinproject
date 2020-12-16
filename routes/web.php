@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('users', [UserController::class, 'index']);
+Route::get('users', [UserController::class, 'index'])->name('users.index');
 
 Route::get('users/{user}', [UserController::class, 'show'])->name('users.singleuser');
 
