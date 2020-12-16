@@ -35,5 +35,8 @@ Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.singlep
 Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
 
+Route::middleware(['auth','admin'])->group(function () {
+    Route::get('admin', [UserController::class, 'adminView'])->name('admin.view');
+});
 
 

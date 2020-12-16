@@ -26,7 +26,13 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
-                
+                @if (Auth::user() && Auth::user()->is_admin == 1)
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('admin.view') }}" :active="request()->routeIs('admin.view')">
+                        {{ __('Admin View') }}
+                    </x-jet-nav-link>
+                </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

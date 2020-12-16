@@ -20,4 +20,8 @@ class UserController extends Controller
         return view('users.show', ['user' => $user, 'comments' => $comments]);
     }
 
+    public function adminView(){
+        return view('admin-view');
+    }
+
 }
