@@ -25,7 +25,7 @@
         <input type="submit" value="Post Comment">
     </form>
     @endauth
-    @if (Auth::id() == $post->user->id)
+    @if (Auth::id() == $post->user->id || Auth::user()->is_admin == 1)
     <form method="POST"
         action="{{ route('posts.destroy', [$post]) }}">
         @csrf
