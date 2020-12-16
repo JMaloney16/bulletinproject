@@ -51,7 +51,7 @@
             @if (session('message'))
                 <p><b>{{ session('message') }}</b></p>
             @endif
-            <div class="container">
+            <div class="container mx-auto">
                 @yield('content')
             </div> 
             </main>
