@@ -20,6 +20,6 @@ class IsAdmin
         if (Auth::user() && Auth::user()->is_admin == 1){
             return $next($request);    
         }
-        return redirect('posts.index')->with('error', 'You are not an admin!');
+        return redirect('posts')->with('error', 'You are not an admin!');
     }
 }
