@@ -25,6 +25,7 @@ class PostFactory extends Factory
             'title' => $this->faker->realText(50),
             'content' => $this->faker->text(500),
             'user_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'imagepath' => 'https://picsum.photos/1280/720/?random'
         ];
     }
 }
