@@ -34,8 +34,8 @@
             <header class="bg-white shadow">
                 <div class="flex justify-between max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <h1 class="font-semibold text-xl text-gray-800 leading-tight">Billboard - @yield('title')</h1>
-                    <div class="flex items-center ml-2">
-                        <input type="text" class"bg-gray-800 rounded-full w-64 px-4 pl-8 py-1" placeholder="Search Posts">
+                    <div>
+                        @yield('headerBar')
                     </div>
                     @if (session('message'))
                     <p class="py-4"><b>{{ session('message') }}</b></p>

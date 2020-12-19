@@ -2,6 +2,12 @@
 
 @section('title', 'Posts')
 
+@section('headerBar')
+<div class="bg-gray-300">
+    <input type="text" class="p-2 border border-gray-500 bg-gray-200 focus:outline-none focus:ring-2 focus:border-transparent" placeholder="Search Posts">
+</div>
+@endsection
+
 @section('content')
 
     <div class="container my-12 mx-auto px-4 justify-center md:px-8">
