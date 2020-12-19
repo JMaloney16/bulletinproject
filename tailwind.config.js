@@ -20,6 +20,7 @@ module.exports = {
 
     variants: {
         opacity: ['responsive', 'hover', 'focus', 'disabled'],
+        underline: ['hover'],
     },
 
     plugins: [require('@tailwindcss/ui')],
