@@ -12,19 +12,9 @@
         <li>Imagepath: {{$post->imagepath ?? 'n/a' }} </li>
     </ul>
     <h2>Comments</h2>
-    <ul>
-        @foreach ($comments as $comment)
-            <li>User:<a href="{{ route('users.singleuser', ['user' => $comment->user_id]) }}">{{ $comment->user->name }}</a> - {{ $comment->content }}</li>
-        @endforeach
-    </ul>
-    @auth
-    <form method="POST" action="{{ route('comments.store', ['post' => $post]) }}">
-        @csrf
-        <p>Enter a comment: <input type="text" name="content"
-            value="{{ old('content') }}"></p>
-        <input type="submit" value="Post Comment">
-    </form>
-    @endauth
+    <div>
+        @livewire('add-comment', ['post' => $post,'comments' => $comments])
+    </div>
     @if (Auth::id() == $post->user->id || Auth::user()->is_admin == 1)
     <form method="POST"
         action="{{ route('posts.destroy', [$post]) }}">
@@ -34,4 +24,5 @@
     </form>
     @endif
     <p><a href="{{ route('posts.index') }}">Back</a></p>
+    
 @endsection
