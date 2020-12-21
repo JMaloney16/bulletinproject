@@ -21,6 +21,7 @@ module.exports = {
     variants: {
         extend: {
             ringWidth: ['focus'],
+            backgroundColor:['active', 'hover'],
         },
         opacity: ['responsive', 'hover', 'focus', 'disabled'],
         underline: ['hover'],
