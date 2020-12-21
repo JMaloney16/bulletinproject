@@ -4,12 +4,17 @@
             <li>User:<a href="{{ route('users.singleuser', ['user' => $comment->user_id]) }}">{{ $comment->user->name }}</a> - {{ $comment->content }}</li>
         @endforeach
     </ul>
-    
-    <form method="POST" action="{{ route('comments.store', ['post' => $post]) }}">
+    @auth
+    <form>
         @csrf
-        <p>Enter a comment: <input type="text" name="content"
+        <p>Enter a comment: <input wire:model="message" type="text" name="content"
             value="{{ old('content') }}"></p>
-        <input type="submit" value="Post Comment">
+            <input wire:click.prevent="addNewComment()" type="submit" value="Post Comment">
     </form>
-    
+    @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+    @endauth
 </div>
