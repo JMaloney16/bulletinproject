@@ -15,6 +15,15 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $posts]);
     }
 
+    public function searchResults($searchTerm)
+    {
+        $posts = Post::query()
+            ->where('content', 'LIKE', "%{$searchTerm}%")
+            ->orWhere('title', 'LIKE', "%{$searchTerm}%")
+            ->get();
+        return $posts;    
+    }
+
     public function show(Post $post)
     {
         
@@ -44,7 +53,7 @@ class PostController extends Controller
         $p->save();
 
         session()->flash('message', 'Post created.');
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.singlepost', [$p]);
     }
 
     public function destroy(Post $post)
