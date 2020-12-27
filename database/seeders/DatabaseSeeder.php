@@ -21,6 +21,15 @@ class DatabaseSeeder extends Seeder
         ->has(\App\Models\Post::factory()->count(3))
         ->create();
         \App\Models\Comment::factory(50)->create();
+        \App\Models\Tag::factory(20)->create();
+
+        $tags = \App\Models\Tag::all();
+
+        \App\Models\Post::all()->each(function ($post) use ($tags) {
+            $post->tags()->attach(
+                $tags->random(rand(1,3))->pluck('id')->toArray()
+            );
+        });
         /*
         User::create([
             'name' => 'Admin',
