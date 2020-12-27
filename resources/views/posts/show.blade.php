@@ -3,6 +3,7 @@
 @section('title', 'Post Details')
 
 @section('content')
+    <?php $tags = $post->tags; ?>
     <div class="px-4 md:px-12">
         <div class="container bg-white rounded-lg shadow-lg my-6 mx-auto px-4 justify-center md:px-8">
             <h1 class="text-xl font-bold my-6 pt-6">{{ $post->title }}</h1>
@@ -11,7 +12,11 @@
             @endif
             <div class="bg-gray-100 rounded-md shadow-md">
                 <div class="mx-2 my-2 py-2">{{ $post->content }} <br><br>
-                    Imagepath: {{ $post->imagepath ?? 'n/a' }}
+                    Imagepath: {{ $post->imagepath ?? 'n/a' }} <br>
+                    Tags: 
+                    @foreach ($tags as $tag)
+                    <a href="{{ route('tags.singletag', ['tag' => $tag]) }}"> {{ $tag->id }}:{{ $tag->name }} </a>
+                    @endforeach
                 </div>
 
             </div>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,8 @@ Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.singlepost');
 Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
+
+Route::get('tags/{tag}', [TagController::class, 'show'])->name('tags.singletag');
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin', [UserController::class, 'adminView'])->name('admin.view');
