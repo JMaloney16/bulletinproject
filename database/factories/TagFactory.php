@@ -23,7 +23,7 @@ class TagFactory extends Factory
     {
         return [
             'name' => $this->faker->realText(10),
-            //'post_id' => \App\Models\Post::inRandomOrder()->first()->id,
+
         ];
     }
 }
