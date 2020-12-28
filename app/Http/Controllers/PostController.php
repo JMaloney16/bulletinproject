@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -38,17 +39,22 @@ class PostController extends Controller
     }
 
     public function store(Request $request){
-        //dd($request['title']);
+        // dd($request);
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|max:2000',
-            'imagepath' => 'nullable'
+            'imagepath' => 'nullable|mimes:jpeg,png,jpg',
         ]);
         
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
         $p->imagepath = $validatedData['imagepath'];
+        if ($request->hasFile('imagepath')) {
+            
+            $path = $request->file('imagepath')->store('public/img/uploaded_images');
+            $p->imagepath = $path;
+        }
         $p->user_id = Auth::id();
         $p->save();
 

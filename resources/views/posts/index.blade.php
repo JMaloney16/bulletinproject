@@ -3,15 +3,14 @@
 @section('title', 'Posts')
 
 @section('headerBar')
-
+<a href="{{ route('posts.create') }}"><span
+    class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Create Post</span></a>
 @endsection
 
 @section('content')
 
     <div class="container my-12 mx-auto px-4 justify-center md:px-8">
-        <div class="text-center py-1"><a href="{{ route('posts.create') }}"><span
-                    class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Create Post</span></a>
-        </div>
+        
         <div class="flex flex-wrap justify-center my-1 lg:my-4">
             @foreach ($posts as $post)
                 <?php $user = $post->user; ?>
@@ -19,7 +18,7 @@
                     <article class="overflow-hidden rounded-lg shadow-lg">
                         @if (isset($post->imagepath))
                             <a href="{{ route('posts.singlepost', [$post]) }}">
-                                <img class="block h-auto w-full" src={{ $post->imagepath }}>
+                                <img class="block h-auto w-full" src={{ Storage::url($post->imagepath) }}>
                             </a>
                         @endif
                         <header class="flex items-center justify-between leading-tight p-2 md:p-4">
