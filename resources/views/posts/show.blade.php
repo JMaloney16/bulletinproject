@@ -12,11 +12,14 @@
             @endif
             <div class="bg-gray-100 rounded-md shadow-md">
                 <div class="mx-2 my-2 py-2">{{ $post->content }} <br><br>
-                    Imagepath: {{ $post->imagepath ?? 'n/a' }} <br>
+                    Posted by: 
+                    <a class="hover:underline" href="{{ route('users.singleuser', [$post->user]) }}">
+                    {{ $post->user->name }}
+                    </a> <br>
                     Tags: 
                     @foreach ($tags as $tag)
                     <a href="{{ route('tags.singletag', ['tag' => $tag]) }}"> <span class="hover:underline">
-                        {{ $tag->id }}:{{ $tag->name }}
+                        {{ $tag->id }} : {{ $tag->name }} 
                     </span> </a>
                     @endforeach
                 </div>
