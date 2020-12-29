@@ -18,18 +18,27 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\User::factory(10)
-        ->has(\App\Models\Post::factory()->count(3))
-        ->create();
+            ->has(\App\Models\Post::factory()->count(3))
+            ->create();
         \App\Models\Comment::factory(50)->create();
         \App\Models\Tag::factory(20)->create();
+
 
         $tags = \App\Models\Tag::all();
 
         \App\Models\Post::all()->each(function ($post) use ($tags) {
             $post->tags()->attach(
-                $tags->random(rand(1,3))->pluck('id')->toArray()
+                $tags->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
+
+
+        $users = \App\Models\User::all();
+
+        $users->each(function ($user) {
+            $user->image()->save(\App\Models\Image::factory()->make(['imageable_id' => $user->id, 'imageable_type' => 'App\Models\User']));
+        });
+
         /*
         User::create([
             'name' => 'Admin',
