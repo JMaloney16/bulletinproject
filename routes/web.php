@@ -34,7 +34,9 @@ Route::get('users/{user}', [UserController::class, 'show'])->name('users.singleu
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
+Route::get('posts/edit/{post}', [PostController::class, 'edit'])->name('posts.edit')->middleware('auth');
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+Route::post('posts/update/{post}', [PostController::class, 'update'])->name('posts.update');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.singlepost');
 Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');

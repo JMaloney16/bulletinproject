@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Facade\FlareClient\Flare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +36,11 @@ class PostController extends Controller
     public function create()
     {
         $users = User::orderBy('name', 'asc')->get();
-        return view('posts.create', ['users' => $users]);
+        return view('posts.create');
+    }
+
+    public function edit(Post $post){
+        return view('posts.create', ['post' => $post]);
     }
 
     public function store(Request $request){
@@ -49,7 +54,6 @@ class PostController extends Controller
         $p = new Post;
         $p->title = $validatedData['title'];
         $p->content = $validatedData['content'];
-        $p->imagepath = $validatedData['imagepath'];
         if ($request->hasFile('imagepath')) {
             
             $path = $request->file('imagepath')->store('public/img/uploaded_images');
@@ -60,6 +64,34 @@ class PostController extends Controller
 
         session()->flash('message', 'Post created.');
         return redirect()->route('posts.singlepost', [$p]);
+    }
+
+    public function update(Post $post, Request $request)
+    {
+        
+        $validatedData = $request->validate([
+            'title' => 'nullable|max:100',
+            'content' => 'nullable|max:2000',
+            'imagepath' => 'nullable|mimes:jpeg,png,jpg',
+        ]);
+        
+        $editPost = Post::findOrFail($post->id);
+        
+        if(isset($validatedData['title'])) {
+        $editPost->title = $validatedData['title'];
+        }
+        if(isset($validatedData['content'])) {
+        $editPost->content = $validatedData['content'];
+        }
+
+        if ($request->hasFile('imagepath')) {
+            $path = $request->file('imagepath')->store('public/img/uploaded_images');
+            $editPost->imagepath = $path;
+        }
+        
+        $editPost->save();
+        session()->flash('message', 'Post has been edited.');
+        return redirect()->route('posts.singlepost', [$post]);
     }
 
     public function destroy(Post $post)

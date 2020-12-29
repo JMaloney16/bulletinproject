@@ -35,6 +35,12 @@
                                     class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Delete</button>
                             </form>
                         @endif
+                        @if (Auth::id() == $post->user->id)
+                            <a href="{{ route('posts.edit', ['post' => $post]) }}">
+                                <span
+                                class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Edit</span>
+                            </a>
+                        @endif
                         <a href="{{ route('posts.index') }}">
                             <span
                                 class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Back</span>
