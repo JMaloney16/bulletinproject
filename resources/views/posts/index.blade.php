@@ -44,9 +44,10 @@
                     </article>
                 </div>
             @endforeach
-
+            <div class="my-6">
+            {{ $posts->links() }}
+            </div>
         </div>
-        {{ $posts->links() }}
     </div>
 
 @endsection
