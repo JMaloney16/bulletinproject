@@ -5,6 +5,8 @@ namespace App\Actions\Fortify;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Models\Image;
+
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -26,6 +28,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
+            if(isset($user->image)){
+                $user->image()->update(['url' => $user->profile_photo_path]);
+            } else {
+                $image = new Image;
+                $image->url = $user->profile_photo_path;
+                $image->imageable_id = $user->id;
+                $image->imageable_type = 'App\Models\User';
+                $image->save();
+                $user->image()->save($image);
+            }
+            $user->save();
         }
 
         if ($input['email'] !== $user->email &&
