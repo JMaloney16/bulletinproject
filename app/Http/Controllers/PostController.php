@@ -66,19 +66,13 @@ class PostController extends Controller
         $p->user_id = Auth::id();
         $p->save();
         if ($request->hasFile('imagepath')) {
-            /*
-            $image = Image::create([
-                'url' => $request->file('imagepath')->store('public/img/uploaded_images'),
-                'imageable_id' => $p->id,
-                'imageable_type' => 'App\Models\Post',
-            ]);
-            */
+            
             $image = new Image;
             $image->url = $request->file('imagepath')->store('public/img/uploaded_images');
             $image->imageable_id = $p->id;
             $image->imageable_type = 'App\Models\Post';
             $image->save();
-            // $path = $request->file('imagepath')->store('public/img/uploaded_images');
+            
             $p->image()->save($image);
             $p->save();
         }
@@ -107,8 +101,15 @@ class PostController extends Controller
         }
 
         if ($request->hasFile('imagepath')) {
-            $path = $request->file('imagepath')->store('public/img/uploaded_images');
-            $editPost->imagepath = $path;
+            /*
+            $image = new Image;
+            $image->url = $request->file('imagepath')->store('public/img/uploaded_images');
+            $image->imageable_id = $editPost->id;
+            $image->imageable_type = 'App\Models\Post';
+            $image->save();
+            */
+            $editPost->image()->update(['url' => $request->file('imagepath')->store('public/img/uploaded_images')]);
+            
         }
 
         $editPost->save();
