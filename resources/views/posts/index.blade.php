@@ -16,9 +16,9 @@
                 <?php $user = $post->user; ?>
                 <div class="mx-2 pb-2 lg:w-1/3">
                     <article class="overflow-hidden rounded-lg shadow-lg">
-                        @if (isset($post->imagepath))
+                        @if (isset($post->image))
                             <a href="{{ route('posts.singlepost', [$post]) }}">
-                                <img class="block h-auto w-full" src={{ Storage::url($post->imagepath) }}>
+                                <img class="block h-auto w-full" src={{ Storage::url($post->image->url) }}>
                             </a>
                         @endif
                         <header class="flex items-center justify-between leading-tight p-2 md:p-4">
@@ -32,9 +32,9 @@
                         </header>
                         <footer class="flex items-center justify-between leading-none p-2 md:p-4">
                             <a class="flex items-center no-underline hover:underline text-black" href="#">
-                                @if (isset($user->profile_photo_path))
+                                @if (isset($user->image))
                                     <img alt={{ $user->name }}"'s Profile Picture'"
-                                        class="block rounded-full hover:opacity-75" src={{ $user->profile_photo_path }}>
+                                        class="block rounded-full hover:opacity-75 h-8 w-8" src={{ Storage::url($user->image->url) }}>
                                 @endif
                                 <a class="ml-2 text-sm" href=" {{ route('users.singleuser', [$user]) }}">
                                     {{ $user->name }}

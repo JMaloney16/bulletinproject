@@ -24,16 +24,20 @@ class DatabaseSeeder extends Seeder
         \App\Models\Tag::factory(20)->create();
 
 
+        $posts = \App\Models\Post::all();
+        $users = \App\Models\User::all();
         $tags = \App\Models\Tag::all();
 
-        \App\Models\Post::all()->each(function ($post) use ($tags) {
+        $posts->each(function ($post) use ($tags) {
             $post->tags()->attach(
                 $tags->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
 
-
-        $users = \App\Models\User::all();
+        $posts->each(function ($post) {
+            $post->image()->save(\App\Models\Image::factory()->make(['imageable_id' => $post->id, 'imageable_type' => 'App\Models\Post']));
+            $post->image()->update(['url' => 'public/img/uploaded_images/seedPostImg.png']);
+        });
 
         $users->each(function ($user) {
             $user->image()->save(\App\Models\Image::factory()->make(['imageable_id' => $user->id, 'imageable_type' => 'App\Models\User']));
