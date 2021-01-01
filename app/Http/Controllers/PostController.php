@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Image;
+use App\Weather;
 use Facade\FlareClient\Flare;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -14,8 +15,9 @@ class PostController extends Controller
 {
     public function index()
     {
+        $weather = app()->make('App\Weather');
         $posts = Post::paginate(10);
-        return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts, 'weather' => $weather->getLocalWeather()]);
     }
 
     public function searchResults($searchTerm)

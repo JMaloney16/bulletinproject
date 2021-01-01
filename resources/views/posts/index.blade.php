@@ -3,6 +3,7 @@
 @section('title', 'Posts')
 
 @section('headerBar')
+
 <a href="{{ route('posts.create') }}"><span
     class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Create Post</span></a>
 @endsection
@@ -31,12 +32,12 @@
                             </p>
                         </header>
                         <footer class="flex items-center justify-between leading-none p-2 md:p-4">
-                            <a class="flex items-center no-underline hover:underline text-black" href="#">
+                            <a class="flex items-center no-underline hover:underline text-black" href="{{ route('users.singleuser', [$user]) }}">
                                 @if (isset($user->image))
                                     <img alt={{ $user->name }}"'s Profile Picture'"
                                         class="block rounded-full hover:opacity-75 h-8 w-8" src={{ Storage::url($user->image->url) }}>
                                 @endif
-                                <a class="ml-2 text-sm" href=" {{ route('users.singleuser', [$user]) }}">
+                                <a class="ml-2 text-sm" href="{{ route('users.singleuser', [$user]) }}">
                                     {{ $user->name }}
                                 </a>
                             </a>
@@ -47,6 +48,13 @@
             <div class="my-6">
             {{ $posts->links() }}
             </div>
+        </div>
+        <div class="mx-auto">
+            <span>
+                {{ $weather['name'] }}
+                {{ $weather['weather']['0']['main'] }}
+                Temp (Celsius): {{$weather['main']['temp']}}
+                </span>
         </div>
     </div>
 
