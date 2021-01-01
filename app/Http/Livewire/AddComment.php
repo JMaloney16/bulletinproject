@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AddComment extends Component
 {
-    public $post, $message;
+    public $post, $message, $editMessage, $currentEditComment;
     public $comments = [];
     public $editText = false;
     
@@ -26,8 +26,8 @@ class AddComment extends Component
         return view('livewire.add-comment', [$this->post, $this->comments]);
     }
 
-    public function editToggle(){
-        
+    public function editToggle(Comment $currentComment){
+        $this->currentEditComment = $currentComment;
         $this->editText = !$this->editText;
     }
     
@@ -49,7 +49,23 @@ class AddComment extends Component
         session()->flash('message', 'Comment posted.');
     }
 
-    
+    public function editComment(){
+        $this->validate(
+            [
+                'message' => 'required|max:250'
+            ],
+        );
+        
+        $editCommentModel = Comment::findorFail($this->currentEditComment->id);
+
+        $editCommentModel->content = $this->editMessage;
+        
+        $editCommentModel->save();
+        $this->editMessage = "";
+
+        $this->emit('commentSectionRefresh');
+        session()->flash('message', 'Comment Edited.');
+    }
     
     
 }
