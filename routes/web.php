@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Weather;
+use App\Weather;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
 
-app()->singleton('App\Models\Weather', function ($app) {
-    return new Weather('API_KEY');
+app()->singleton('App\Weather', function ($app) {
+    return new Weather('db18eec2f8e5f853b874c63ce27540b1', 'Swansea');
 });
 
 /*
