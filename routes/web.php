@@ -1,10 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Weather;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
+
+app()->singleton('App\Models\Weather', function ($app) {
+    return new Weather('API_KEY');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +45,7 @@ Route::post('posts/update/{post}', [PostController::class, 'update'])->name('pos
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.singlepost');
 Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
 Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
+Route::post('comments/update/{comment}', [CommentController::class, 'update'])->name('comments.update');
 
 Route::get('tags/{tag}', [TagController::class, 'show'])->name('tags.singletag');
 

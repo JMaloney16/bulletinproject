@@ -12,6 +12,9 @@ class AddComment extends Component
 {
     public $post, $message;
     public $comments = [];
+    public $editText = false;
+    
+    
 
     protected $listeners = [
         'commentSectionRefresh' => '$refresh',
@@ -21,6 +24,11 @@ class AddComment extends Component
     {
         $this->comments=$this->post->comments;
         return view('livewire.add-comment', [$this->post, $this->comments]);
+    }
+
+    public function editToggle(){
+        
+        $this->editText = !$this->editText;
     }
     
     public function addNewComment(){
@@ -35,9 +43,13 @@ class AddComment extends Component
         $newComment->post_id = $this->post->id;
         $newComment->user_id = Auth::id();
         $newComment->save();
+        $this->message = "";
         
         $this->emit('commentSectionRefresh');
         session()->flash('message', 'Comment posted.');
     }
+
+    
+    
     
 }
