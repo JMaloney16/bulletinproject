@@ -16,59 +16,62 @@
 </head>
 
 <body class="font-sans antialiased">
-    
+
     <div class="bg-gray-100">
         @if (Route::has('login'))
             @auth
                 @livewire('navigation-dropdown')
             @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                <div class="bg-white w-full">
+                    <div class="bg-white flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                @endif
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        @endif
+                    </div>
+                </div>
             @endif
             @endif
-            
+
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="flex justify-between max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <h1 class="font-semibold text-xl text-gray-800 leading-tight">Billboard - @yield('title')</h1>
                     <div>
+                        @if (session('message'))
+                            <p class="py-4"><b>{{ session('message') }}</b></p>
+                        @endif
                         @yield('headerBar')
                     </div>
-                    @if (session('message'))
-                    <p class="py-4"><b>{{ session('message') }}</b></p>
-                    @endif
                 </div>
             </header>
-            
+
             <!-- Page Content -->
             <main>
                 @if ($errors->any())
-                <div>
-                    Errors:
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div>
+                        Errors:
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
-                
+
                 <div class="container mx-auto py-4">
                     @yield('content')
                 </div>
             </main>
-            
-            
+
+
         </div>
         @stack('modals')
-        
+
         @livewireScripts
-        
-    </div>
+
+        </div>
     </body>
-    
+
     </html>
-    
