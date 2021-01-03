@@ -2,8 +2,9 @@ require('./bootstrap');
 
 Echo.private('commentNotification')
   .listen('CommentPosted', (e) => {
-    this.messages.push({
-      message: e.message.comment,
-      user: e.user
-    });
+    // this.messages.push({
+    //   comment: e.comment.comment,
+    //   user: e.user
+    // });
+    console.log(e)
   });

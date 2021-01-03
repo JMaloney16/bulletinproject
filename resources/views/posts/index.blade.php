@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="container my-12 mx-auto px-4 justify-center md:px-8">
-        
+        @livewire('comment-notification')
         <div class="flex flex-wrap justify-center my-1 lg:my-4">
             @foreach ($posts as $post)
                 <?php $user = $post->user; ?>
@@ -49,12 +49,12 @@
             {{ $posts->links() }}
             </div>
         </div>
-        <div class="mx-auto">
-            <span>
-                {{ $weather['name'] }}
-                {{ $weather['weather']['0']['main'] }}
-                Temp (Celsius): {{$weather['main']['temp']}}
-                </span>
+        <div class="mx-auto text-center">
+            
+                <span class="mx-2">{{ $weather['name'] }}</span>
+                <span class="mx-2">{{ $weather['weather']['0']['main'] }}</span>
+                <span class="mx-2">Temp (Celsius): {{$weather['main']['temp']}}</span>
+                
         </div>
     </div>
 
