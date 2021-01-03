@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class CommentNotification extends Component
 {
     public $notification = '';
+    public $thisUser;
+    public $post;
 
     protected $listeners = [
         'echo-private:commentNotification,CommentPosted' => 'notifyNewComment',
@@ -20,20 +22,21 @@ class CommentNotification extends Component
 
     public function render()
     {
+        $this->thisUser = Auth::id();
         return view('livewire.comment-notification');
     }
 
     public function notifyNewComment($event)
     {
+        
         $user = User::find($event['user']['id']);
-        $comment = Comment::find($event['comment']['post_id']);
+        $comment = Comment::find($event['comment']['id']);
         
-        $post = Post::find($comment->post_id);
+        $this->post = Post::find($comment->post_id);
         
-        $this->notification = $user->name.' posted: '.$comment->content;
-        if (Auth::id() == $post->user->id){
-            
-            dd($event);
+        if ($this->thisUser === $this->post->user->id){
+
+            $this->notification = $user->name.' commented on your post: '.$this->post->title;
         }
     }
 }

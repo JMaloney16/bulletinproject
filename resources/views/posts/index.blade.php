@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="container my-12 mx-auto px-4 justify-center md:px-8">
-        @livewire('comment-notification')
+        
         <div class="flex flex-wrap justify-center my-1 lg:my-4">
             @foreach ($posts as $post)
                 <?php $user = $post->user; ?>

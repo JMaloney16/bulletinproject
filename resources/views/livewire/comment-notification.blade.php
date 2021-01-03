@@ -1,3 +1,4 @@
 <div>
-    <div class="my-1 rounded-lg shadow-lg bg-white">{{ $notification }}</div>
+    {{--  <a href="{{ route('posts.singlepost', [$post]) }}">{{ $notification }}</a>  --}}
+    {{ $notification }}
 </div>
