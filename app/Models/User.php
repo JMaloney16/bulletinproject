@@ -71,4 +71,8 @@ class User extends Authenticatable
     public function image(){
         return $this->morphOne(Image::class, 'imageable');
     }
+
+    public function candidate(){
+        return $this->hasOne('App\Models\Candidate');
+    }
 }
