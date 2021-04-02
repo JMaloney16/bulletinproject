@@ -9,7 +9,7 @@ class Election extends Model
 {
     use HasFactory;
 
-    public function candidate(){
+    public function candidates(){
         return $this->hasMany('App\Models\Candidate');
     }
 }

@@ -5,6 +5,7 @@ use App\Weather;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\TagController;
 
 app()->singleton('App\Weather', function ($app) {
@@ -48,6 +49,9 @@ Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.d
 Route::post('comments/update/{comment}', [CommentController::class, 'update'])->name('comments.update');
 
 Route::get('tags/{tag}', [TagController::class, 'show'])->name('tags.singletag');
+
+Route::get('elections', [ElectionController::class, 'index'])->name('elections.index');
+Route::get('elections/{election}/vote', [ElectionController::class, 'vote'])->name('elections.vote')->middleware('auth');
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin', [UserController::class, 'adminView'])->name('admin.view');

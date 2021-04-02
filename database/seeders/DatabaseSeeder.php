@@ -22,11 +22,13 @@ class DatabaseSeeder extends Seeder
             ->create();
         \App\Models\Comment::factory(50)->create();
         \App\Models\Tag::factory(20)->create();
+        \App\Models\Election::factory(4)->create();
 
 
         $posts = \App\Models\Post::all();
         $users = \App\Models\User::all();
         $tags = \App\Models\Tag::all();
+        $elections = \App\Models\Election::all();
 
         $posts->each(function ($post) use ($tags) {
             $post->tags()->attach(
@@ -41,6 +43,15 @@ class DatabaseSeeder extends Seeder
 
         $users->each(function ($user) {
             $user->image()->save(\App\Models\Image::factory()->make(['imageable_id' => $user->id, 'imageable_type' => 'App\Models\User']));
+        });
+
+        $elections->each(function ($election) {
+            $candidates = \App\Models\Candidate::factory(4)->make(['election_id' => $election->id]);
+            // $candidates->each(function ($candidate) {
+            //     $votes = \App\Models\Vote::factory(rand(0,5))->make(['candidate_id' => $candidate->id]);
+            //     $candidate->votes()->saveMany($votes);
+            // });
+            $election->candidates()->saveMany($candidates);
         });
 
         /*
