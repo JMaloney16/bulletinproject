@@ -52,6 +52,7 @@ Route::get('tags/{tag}', [TagController::class, 'show'])->name('tags.singletag')
 
 Route::get('elections', [ElectionController::class, 'index'])->name('elections.index');
 Route::get('elections/{election}/vote', [ElectionController::class, 'vote'])->name('elections.vote')->middleware('auth');
+Route::post('elections/{election}/vote', [ElectionController::class, 'store'])->name('elections.store');
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin', [UserController::class, 'adminView'])->name('admin.view');
