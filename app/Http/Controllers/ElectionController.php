@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Election;
 use App\Models\Vote;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,6 +50,12 @@ class ElectionController extends Controller
             if ($candidate->votes()->count() > $topVoted->votes()->count()) {
                 $topVoted = $candidate;
             }
+        });
+
+        $previousAdmins = User::where('is_admin', 1);
+        $previousAdmins->each(function ($admin) {
+            $admin->is_admin = 0;
+            $admin->save();
         });
 
         $topVoted->user->is_admin = 1;
