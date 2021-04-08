@@ -9,6 +9,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use PDO;
 
 class User extends Authenticatable
 {
@@ -74,5 +75,9 @@ class User extends Authenticatable
 
     public function candidate(){
         return $this->hasOne('App\Models\Candidate');
+    }
+
+    public function votes(){
+        return $this->hasMany('App\Models\Vote');
     }
 }

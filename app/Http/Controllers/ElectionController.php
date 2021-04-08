@@ -21,14 +21,21 @@ class ElectionController extends Controller
         return view('elections.vote', ['election' => $election]);
     }
 
-    public function store(Request $request)
+    public function store(Election $election, Request $request)
     {
+        $user = Auth::user();
+        $pastVotes = $user->votes;
         // dd($request->input());
         $v = new Vote;
         $v->user_id = Auth::id();
         $v->candidate_id = $request->input('candidates');
         $v->save();
-
+        $pastVotes->each(function ($vote) use ($election) {
+            if ($election == $vote->election()) {
+                $vote->delete();
+            }
+        });
+        
         session()->flash('message', 'Vote submitted.');
         return redirect()->route('elections.index');
     }

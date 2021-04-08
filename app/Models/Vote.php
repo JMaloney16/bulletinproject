@@ -16,4 +16,8 @@ class Vote extends Model
     public function candidate(){
         return $this->belongsTo('App\Models\Candidate');
     }
+
+    public function election(){
+        return $this->candidate->election;
+    }
 }
