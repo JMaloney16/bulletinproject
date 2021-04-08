@@ -40,4 +40,13 @@ class ElectionController extends Controller
         return redirect()->route('elections.index');
     }
 
+    public function close(Election $election)
+    {
+        $election->open = 0;
+        $election->save();
+
+        session()->flash('message', 'Election has been closed.');
+        return redirect()->route('elections.index');
+    }
+
 }

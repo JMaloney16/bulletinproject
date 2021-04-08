@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\TagController;
+use GuzzleHttp\Middleware;
 
 app()->singleton('App\Weather', function ($app) {
     return new Weather('db18eec2f8e5f853b874c63ce27540b1', 'Swansea');
@@ -53,6 +54,7 @@ Route::get('tags/{tag}', [TagController::class, 'show'])->name('tags.singletag')
 Route::get('elections', [ElectionController::class, 'index'])->name('elections.index');
 Route::get('elections/{election}/vote', [ElectionController::class, 'vote'])->name('elections.vote')->middleware('auth');
 Route::post('elections/{election}/vote', [ElectionController::class, 'store'])->name('elections.store')->middleware('auth');
+Route::post('elections/{election}/close', [ElectionController::class, 'close'])->name('elections.close')->middleware('auth');
 
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('admin', [UserController::class, 'adminView'])->name('admin.view');
