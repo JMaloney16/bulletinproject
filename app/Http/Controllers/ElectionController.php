@@ -42,6 +42,18 @@ class ElectionController extends Controller
 
     public function close(Election $election)
     {
+        $candidates = $election->candidates();
+        $topVoted = $candidates->first();
+
+        $candidates->each(function ($candidate) use (&$topVoted) {
+            if ($candidate->votes()->count() > $topVoted->votes()->count()) {
+                $topVoted = $candidate;
+            }
+        });
+
+        $topVoted->user->is_admin = 1;
+        $topVoted->user->save();
+
         $election->open = 0;
         $election->save();
 
