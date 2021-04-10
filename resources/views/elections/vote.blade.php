@@ -5,9 +5,28 @@
 @section('headerBar')
 
 @section('content')
-<?php $candidates = $election->candidates; ?>
-
 <div class="max-w-xl bg-white rounded-lg shadow-lg py-10 px-5 m-auto w-full mt-10">
+{{-- @if ((Auth::user()->is_admin == 1) && ($election->open == true))
+    <form method="POST" action="#" enctype="multipart/form-data">
+        <div class="grid py-4">
+
+            @foreach ($users as $user)
+            <div>
+                <input type="checkbox" id={{$user->id}} name={{$user->id}} value={{$user->name}}>
+                <label for={{$user->id}}> {{$user->name}} </label>
+            </div>
+            @endforeach
+            <input type="submit" value="Add Candidates"
+            class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">
+        </div>
+</form>
+@endif --}}
+
+<?php $candidates = $election->candidates; ?>
+    @if(!$candidates->contains('user', Auth::User()))
+    <a href="{{route('elections.adduser', ['election' => $election]) }}"><span
+        class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Run for election</span></a>
+    @endif
     <div class="grid grid-cols-2 gap-4 max-w-xl m-auto">
         @if ($election->open == false)
             <label class="col-span-2">Election closed</label>

@@ -3,7 +3,10 @@
 @section('title', 'Elections')
 
 @section('headerBar')
-
+@if (Auth::user()->is_admin == true)
+    <a href="{{ route('elections.create') }}"><span
+        class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Create Election</span></a>
+@endif
 @endsection
 
 @section('content')

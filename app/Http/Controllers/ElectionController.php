@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Election;
 use App\Models\Vote;
 use App\Models\User;
+use App\Models\Candidate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,24 @@ class ElectionController extends Controller
 
     public function vote(Election $election)
     {
-        return view('elections.vote', ['election' => $election]);
+        $users = User::get();
+        return view('elections.vote', ['election' => $election, 'users' => $users]);
+    }
+
+    public function create() {
+        $e = new Election();
+        $e->save();
+        return redirect()->route('elections.index');
+    }
+
+    public function addUser(Election $election) {
+        $users = User::get();
+
+        $c = new Candidate();
+        $c->user_id = Auth::user()->id;
+        $c->election_id = $election->id;
+        $c->save();
+        return view('elections.vote', ['election' => $election, 'users' => $users]);
     }
 
     public function store(Election $election, Request $request)
@@ -67,5 +85,6 @@ class ElectionController extends Controller
         session()->flash('message', 'Election has been closed.');
         return redirect()->route('elections.index');
     }
+
 
 }

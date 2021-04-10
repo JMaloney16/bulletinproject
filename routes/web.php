@@ -52,6 +52,8 @@ Route::post('comments/update/{comment}', [CommentController::class, 'update'])->
 Route::get('tags/{tag}', [TagController::class, 'show'])->name('tags.singletag');
 
 Route::get('elections', [ElectionController::class, 'index'])->name('elections.index');
+Route::get('elections/create', [ElectionController::class, 'create'])->name('elections.create');
+Route::get('elections/{election}/run', [ElectionController::class, 'addUser'])->name('elections.adduser')->middleware('auth');
 Route::get('elections/{election}/vote', [ElectionController::class, 'vote'])->name('elections.vote')->middleware('auth');
 Route::post('elections/{election}/vote', [ElectionController::class, 'store'])->name('elections.store')->middleware('auth');
 Route::post('elections/{election}/close', [ElectionController::class, 'close'])->name('elections.close')->middleware('auth');
