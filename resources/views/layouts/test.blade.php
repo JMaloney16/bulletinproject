@@ -13,22 +13,22 @@
     @livewireStyles
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.js" defer></script>
-    <title>Billboard - @yield('title')</title>
+    <title>Bulletin Project - @yield('title')</title>
 </head>
 
 <body class="font-sans antialiased">
 
-    <div class="bg-gray-100">
+    <div class="bg-bg-autumn">
         @if (Route::has('login'))
             @auth
                 @livewire('navigation-dropdown')
             @else
-                <div class="bg-white w-full">
-                    <div class="bg-white flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                <div class="bg-bg-sea w-full">
+                    <div class="bg-bg-sea flex max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        <a href="{{ route('login') }}" class="text-sm text-gray-100 underline">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-100 underline">Register</a>
                         @endif
                     </div>
                 </div>
@@ -36,15 +36,15 @@
             @endif
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
+            <header class="bg-bg-deepsea shadow">
                 <div class="flex justify-between max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <h1 class="font-semibold text-xl text-gray-800 leading-tight">Billboard - @yield('title')</h1>
+                    <h1 class="font-semibold text-xl text-gray-200 leading-tight">Bulletin Board - @yield('title')</h1>
                     <h2 class="mx-2">
                         @livewire('comment-notification')
                     </h2>
                     <div>
                         @if (session('message'))
-                            <p class="py-4"><b>{{ session('message') }}</b></p>
+                            <p class="py-4 text-gray-100"><b>{{ session('message') }}</b></p>
                         @endif
                         @yield('headerBar')
                     </div>

@@ -5,7 +5,7 @@
 @section('content')
     <?php $tags = $post->tags; ?>
     <div class="px-4 md:px-12">
-        <div class="container bg-white rounded-lg shadow-lg my-6 mx-auto px-4 justify-center md:px-8">
+        <div class="container bg-white rounded-lg shadow-lg my-6 pb-4 mx-auto px-4 justify-center md:px-8">
             <h1 class="text-xl font-bold my-6 pt-6">{{ $post->title }}</h1>
             @if (!empty($post->image))
                 <img class="mx-auto rounded-lg shadow-lg my-4" src={{ Storage::url($post->image->url) }}>

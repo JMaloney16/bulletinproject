@@ -23,10 +23,7 @@
 @endif --}}
 
 <?php $candidates = $election->candidates; ?>
-    @if(!$candidates->contains('user', Auth::User()))
-    <a href="{{route('elections.adduser', ['election' => $election]) }}"><span
-        class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Run for election</span></a>
-    @endif
+    
     <div class="grid grid-cols-2 gap-4 max-w-xl m-auto">
         @if ($election->open == false)
             <label class="col-span-2">Election closed</label>
@@ -46,18 +43,26 @@
                     <label for={{ $candidate->id }}>{{$candidate->user->name}}</label>
                 </div>
     @endforeach
-            @if ($election->open == true)
-                <input type="submit" value="Submit Vote"
-                class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">
-            @endif
-            </form>
-            @if ((Auth::user()->is_admin == 1) && ($election->open == true))
-                            <form method="POST" action="{{ route('elections.close', ['election' => $election]) }}">
-                                @csrf
-                                <button type="submit"
-                                    class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Close</button>
-                            </form>
-            @endif
+    <div>
+
+        @if ($election->open == true)
+        <input type="submit" value="Submit Vote"
+        class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">
+        @endif
+    </form>               
+    @if ((Auth::user()->is_admin == 1) && ($election->open == true))
+    <form method="POST" action="{{ route('elections.close', ['election' => $election]) }}">
+        @csrf
+        <button type="submit"
+        class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Close</button>
+    </form>
+    @endif
+    @if(!$candidates->contains('user', Auth::User()) && $election->open == true)
+    <a href="{{route('elections.adduser', ['election' => $election]) }}"><button
+        class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Run for election</button></a>
+        @endif
+    </div>
+                
         </div>
 </div>
 

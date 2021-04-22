@@ -38,6 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('users', [UserController::class, 'index'])->name('users.index');
 
 Route::get('users/{user}', [UserController::class, 'show'])->name('users.singleuser');
+Route::get('users/{user}/makeadmin', [UserController::class, 'makeAdmin'])->name('users.makeadmin')->middleware('auth');
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('auth');

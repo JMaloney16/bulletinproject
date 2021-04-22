@@ -12,6 +12,12 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'bg-sea': '#325288',
+                'bg-deepsea': '#114e60',
+                'bg-autumn': '#f4eee8',
+                'bg-sand': '#f5cebe',
+            },
         },
         container: {
             center: true,

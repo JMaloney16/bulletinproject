@@ -10,13 +10,13 @@
 
 @section('content')
 
-    <div class="container my-12 mx-auto px-4 justify-center md:px-8">
+    <div class="container my-12 mx-auto justify-center">
         
         <div class="flex flex-wrap justify-center my-1 lg:my-4">
             @foreach ($posts as $post)
                 <?php $user = $post->user; ?>
-                <div class="mx-2 pb-2 lg:w-1/3">
-                    <article class="overflow-hidden rounded-lg shadow-lg">
+                <div class="mx-2 pb-2 lg:w-1/4">
+                    <article class="overflow-hidden bg-white rounded-lg shadow-lg">
                         @if (isset($post->image))
                             <a href="{{ route('posts.singlepost', [$post]) }}">
                                 <img class="block h-auto w-full" src={{ Storage::url($post->image->url) }}>

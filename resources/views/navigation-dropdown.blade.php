@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-bg-sea border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,24 +6,24 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-jet-application-mark class="block" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
-                        {{ __('Posts') }}
+                        <div class="text-gray-100">{{ __('Posts') }}</div>
                     </x-jet-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8  sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                        {{ __('Users') }}
+                        <div class="text-gray-100">{{ __('Users') }}</div>
                     </x-jet-nav-link>
                 </div>
                 <div class ="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('elections.index') }}" :active="request()->routeIs('elections.index')">
-                        {{ __('Elections') }}
+                        <div class="text-gray-100">{{ __('Elections') }}</div>
                     </x-jet-nav-link>
                 </div>
                 {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -32,9 +32,9 @@
                     </x-jet-nav-link>
                 </div> --}}
                 @if (Auth::user() && Auth::user()->is_admin == 1)
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 text-gray-100 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('admin.view') }}" :active="request()->routeIs('admin.view')">
-                        {{ __('Admin View') }}
+                        <div class="text-gray-100">{{ __('Admin View') }}</div>
                     </x-jet-nav-link>
                 </div>
                 @endif
@@ -51,7 +51,7 @@
                                 <img class="h-8 w-8 rounded-full object-cover" src={{ Storage::url(Auth::user()->image->url) }} alt="{{ Auth::user()->name }}" />
                             </button>
                         @else
-                            <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                            <button class="flex items-center text-sm font-medium text-gray-100 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                 <div>{{ Auth::user()->name }}</div>
 
                                 <div class="ml-1">

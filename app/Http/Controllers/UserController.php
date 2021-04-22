@@ -24,4 +24,13 @@ class UserController extends Controller
         return view('admin-view');
     }
 
+    public function makeAdmin(User $user)
+    {
+        $user->is_admin = 1;
+        $user->save();
+
+        session()->flash('message', 'User has been made admin.');
+        return redirect()->route('users.singleuser', ['user' => $user]);
+    }
+
 }

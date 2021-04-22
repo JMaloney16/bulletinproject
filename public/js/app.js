@@ -25499,8 +25499,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "f66062f9dea11acff583",
-  cluster: "eu",
+  key: "",
+  cluster: "mt1",
   forceTLS: true
 });
 
@@ -25513,8 +25513,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\jackp\OneDrive\Documents\CS-348\Laravel\socialnetwork\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\jackp\OneDrive\Documents\CS-348\Laravel\socialnetwork\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\jackp\OneDrive\Documents\CS-348\Laravel\bulletinproject\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\jackp\OneDrive\Documents\CS-348\Laravel\bulletinproject\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
