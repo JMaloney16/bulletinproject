@@ -31,13 +31,19 @@ class ElectionController extends Controller
     }
 
     public function addUser(Election $election) {
-        $users = User::get();
+        // $candidates = $election->candidates();
+        // foreach ($election->candidates() as $candidate)
+        // if (!$candidates->contains('user', Auth::User())) {
+        // }
 
-        $c = new Candidate();
-        $c->user_id = Auth::user()->id;
-        $c->election_id = $election->id;
-        $c->save();
-        return view('elections.vote', ['election' => $election, 'users' => $users]);
+            $users = User::get();
+            
+            $c = new Candidate();
+            $c->user_id = Auth::user()->id;
+            $c->election_id = $election->id;
+            $c->save();
+        // return view('elections.vote', ['election' => $election, 'users' => $users]);
+        return redirect()->route('elections.vote', ['election' => $election, 'users' => $users]);
     }
 
     public function store(Election $election, Request $request)

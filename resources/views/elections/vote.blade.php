@@ -33,7 +33,11 @@
             </div>    
             @endforeach
         @endif
-    <label class="col-span-2">Candidates</label>
+        @if(!$candidates->contains('user', Auth::User()) && $election->open == true)
+        <a href="{{route('elections.adduser', ['election' => $election]) }}"><button
+            class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Run for election</button></a>
+            @endif
+    <h1 class="text-xl font-bold col-span-2">Candidates</h1>
     <form method="POST" action="{{ route('elections.store', ['election' => $election]) }}" enctype="multipart/form-data">
     @foreach ($candidates as $candidate)
         
@@ -43,8 +47,6 @@
                     <label for={{ $candidate->id }}>{{$candidate->user->name}}</label>
                 </div>
     @endforeach
-    <div>
-
         @if ($election->open == true)
         <input type="submit" value="Submit Vote"
         class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">
@@ -57,13 +59,7 @@
         class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Close</button>
     </form>
     @endif
-    @if(!$candidates->contains('user', Auth::User()) && $election->open == true)
-    <a href="{{route('elections.adduser', ['election' => $election]) }}"><button
-        class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Run for election</button></a>
-        @endif
-    </div>
-                
-        </div>
+</div>            
 </div>
 
 @endsection
