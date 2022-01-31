@@ -9,9 +9,11 @@ use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\TagController;
 use GuzzleHttp\Middleware;
 
+
 app()->singleton('App\Weather', function ($app) {
     return new Weather('db18eec2f8e5f853b874c63ce27540b1', 'Swansea');
 });
+
 
 /*
 |--------------------------------------------------------------------------

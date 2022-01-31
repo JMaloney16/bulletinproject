@@ -37,6 +37,7 @@
                                 <button type="submit"
                                     class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Delete</button>
                             </form>
+                            View count: {{ $post->vzt()->count() }}
                         @endif
                         @if (Auth::id() == $post->user->id)
                             <a href="{{ route('posts.edit', ['post' => $post]) }}">

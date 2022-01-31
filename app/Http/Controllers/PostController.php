@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Image;
+use App\Models\Image; 
+use App\Http\Controllers;
 use App\Weather;
 use Facade\FlareClient\Flare;
 use Illuminate\Http\Request;
@@ -31,8 +32,13 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-
         $comments = $post->comments;
+        $post->vzt()->increment();
+        /*
+        $viewcount = $post->viewcount;
+        $viewcount = $viewcount + 1;
+        $post->save();
+        */
         return view('posts.show', ['post' => $post, 'comments' => $comments]);
     }
 

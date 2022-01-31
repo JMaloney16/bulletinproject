@@ -31,7 +31,7 @@ class ImageFactory extends Factory
         $imageable = $imageableType::factory()->make();
 
         return [
-            'url' => 'public/img/uploaded_images/50TTmFqMGztrBn5C46QCg6COijVnS0SbQQLT2a0v.jpg',
+            'url' => 'public/img/uploaded_images/seedUserImg.jpg',
             'imageable_id' => $imageable->id,
             'imageable_type' => $imageableType,
         ];
