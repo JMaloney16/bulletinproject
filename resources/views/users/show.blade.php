@@ -17,12 +17,14 @@
             <h2 class="text-lg font-semibold my-4 pt-4">Comments</h2>
             <ul>
                 @foreach ($comments as $comment)
+                    @if($comment->post->visible)
                     <li>Post ID:<a class="hover:underline"
                             href="{{ route('posts.singlepost', ['post' => $comment->post_id]) }}">{{ $comment->post_id }}
                             -
                             {{ $comment->content }} </a>
                     </li>
                     <br>
+                    @endif
                 @endforeach
                 {{ $comments->links() }}
             </ul>
