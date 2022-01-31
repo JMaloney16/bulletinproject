@@ -49,6 +49,7 @@ Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 Route::post('posts/update/{post}', [PostController::class, 'update'])->name('posts.update');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.singlepost');
 Route::post('posts/{post}', [CommentController::class, 'store'])->name('comments.store')->middleware('auth');
+Route::get('posts/toggle/{post}', [PostController::class, 'toggleVisibility'])->name('posts.togglevis')->middleware('admin');
 Route::delete('posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
 Route::post('comments/update/{comment}', [CommentController::class, 'update'])->name('comments.update');
 

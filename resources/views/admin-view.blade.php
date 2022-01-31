@@ -11,7 +11,7 @@
                   <div class="container bg-grey-100 rounded-lg shadow-lg my-4 mx-auto px-4">      
                      <h2>
                             <a href="{{ route('posts.singlepost', [$post]) }}">
-                            {{ $post->title }} : View Count - {{ $post->vzt()->count() }}
+                            {{ $post->title }} : View Count - {{ $post->vzt()->count() }} : Visible - {{ $post->visible }}
                             </a>
                             <form method="POST" action="{{ route('posts.destroy', [$post]) }}">
                                 @csrf
@@ -19,6 +19,10 @@
                                 <button type="submit"
                                     class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Delete</button>
                             </form>
+                            <a href="{{ route('posts.togglevis', ['post' => $post]) }}">
+                                <span
+                                class="rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Toggle Visibility</span>
+                            </a>
                     </h2>
                   </div>
                     @endforeach

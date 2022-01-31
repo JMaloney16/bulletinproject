@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $weather = app()->make('App\Weather');
-        $posts = Post::orderBy('id','desc')->paginate(12);
+        $posts = Post::orderBy('id','desc')->where('visible', 1)->paginate(12);
         return view('posts.index', ['posts' => $posts, 'weather' => $weather->getLocalWeather()]);
     }
 
@@ -123,6 +123,19 @@ class PostController extends Controller
         $editPost->save();
         session()->flash('message', 'Post has been edited.');
         return redirect()->route('posts.singlepost', [$post]);
+    }
+
+    public function toggleVisibility(Post $post)
+    {
+        if(!$post->visible) {
+            $post->visible = True;
+        }elseif($post->visible) {
+            $post->visible = False;
+        }
+
+        $post->save();
+
+        return redirect()->route('admin.view')->with('message', 'Visibility updated');
     }
 
     public function destroy(Post $post)
