@@ -16,6 +16,7 @@
         @endif
             @csrf
             <div class="grid grid-cols-2 gap-4 max-w-xl m-auto">
+                <h1 class="font-semibold text-xl leading-tight">Please note posts will not be public until approved by an administrator</h1>
                 <div class="col-span-2">
                     <input type="text" name="title" value="{{ old('title') }}" placeholder="Title"
                         class="rounded-lg border-solid border-gray-200 border-2 p-3 md:text-xl w-full" />
