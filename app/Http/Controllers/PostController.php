@@ -55,7 +55,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|max:2000',
@@ -79,6 +79,7 @@ class PostController extends Controller
             $image->url = $request->file('imagepath')->store('public/img/uploaded_images');
             $image->imageable_id = $p->id;
             $image->imageable_type = 'App\Models\Post';
+            
             $image->save();
             
             $p->image()->save($image);
