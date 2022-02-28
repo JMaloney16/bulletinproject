@@ -83,8 +83,9 @@ class PostController extends Controller
             $image->save();
             
             $p->image()->save($image);
-            dd($p);
             $p->save();
+            dd($p);
+
         }
 
 
