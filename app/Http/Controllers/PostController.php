@@ -83,9 +83,8 @@ class PostController extends Controller
             $image->save();
             
             $p->image()->save($image);
+            $p->imagepath = $image->url;
             $p->save();
-            dd($p);
-
         }
 
 
