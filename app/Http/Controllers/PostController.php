@@ -55,7 +55,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $validatedData = $request->validate([
             'title' => 'required|max:100',
             'content' => 'required|max:2000',
@@ -83,6 +83,7 @@ class PostController extends Controller
             $image->save();
             
             $p->image()->save($image);
+            dd($p);
             $p->save();
         }
 
