@@ -35,7 +35,7 @@
                             <a class="flex items-center no-underline hover:underline text-black" href="{{ route('users.singleuser', [$user]) }}">
                                 @if (isset($user->image))
                                     <img alt={{ $user->name }}"'s Profile Picture'"
-                                        class="block rounded-full hover:opacity-75 h-8 w-8" src={{ Storage::url($user->image->url) }}>
+                                        class="block rounded-full hover:opacity-75 h-8 w-8" src={{ Storage::cloud()->url($user->image->url) }}>
                                 @endif
                                 <a class="ml-2 text-sm" href="{{ route('users.singleuser', [$user]) }}">
                                     {{ $user->name }}

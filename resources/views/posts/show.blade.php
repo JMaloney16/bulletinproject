@@ -8,7 +8,7 @@
         <div class="container bg-white rounded-lg shadow-lg my-6 pb-4 mx-auto px-4 justify-center md:px-8">
             <h1 class="text-xl font-bold my-6 pt-6">{{ $post->title }}</h1>
             @if (!empty($post->image))
-                <img class="mx-auto rounded-lg shadow-lg my-4" src={{ Storage::url($post->image->url) }}>
+                <img class="mx-auto rounded-lg shadow-lg my-4" src={{ Storage::cloud()->url($post->image->url) }}>
             @endif
             <div class="bg-gray-100 rounded-md shadow-md">
                 <div class="mx-2 my-2 py-2">{{ $post->content }} <br><br>

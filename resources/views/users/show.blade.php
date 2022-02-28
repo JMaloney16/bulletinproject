@@ -9,7 +9,7 @@
             <div>
                 @if (isset($user->image))
     
-                    <img class="rounded-full h-48 w-48" src={{ Storage::url($user->image->url) }}>
+                    <img class="rounded-full h-48 w-48" src={{ Storage::cloud()->url($user->image->url) }}>
     
                 @endif
             </div>

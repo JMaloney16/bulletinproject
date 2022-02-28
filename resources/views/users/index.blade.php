@@ -11,7 +11,7 @@
                     <article class="overflow-hidden rounded-lg shadow-lg">
                         @if (isset($user->image))
                             <a href="{{ route('users.singleuser', [$user]) }}">
-                                <img class="block h-auto w-full" src={{ Storage::url($user->image->url) }}>
+                                <img class="block h-auto w-full" src={{ Storage::cloud()->url($user->image->url) }}>
                             </a>
                         @endif
                         <header class="flex leading-tight p-2 md:p-4 bg-white">
