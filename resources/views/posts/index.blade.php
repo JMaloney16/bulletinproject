@@ -19,7 +19,7 @@
                     <article class="overflow-hidden bg-white rounded-lg shadow-lg">
                         @if (isset($post->image))
                             <a href="{{ route('posts.singlepost', [$post]) }}">
-                                <img class="block h-auto w-full" src={{ Storage::cloud()->url($post->image->url) }}>
+                                <img class="block h-auto w-full object-cover" src={{ Storage::cloud()->url($post->image->url) }}>
                             </a>
                         @endif
                         <header class="flex items-center justify-between leading-tight p-2 md:p-4">
