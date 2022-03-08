@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $weather = app()->make('App\Weather');
-        $posts = Post::orderBy('id','desc')->where('visible', 1)->paginate(12);
+        $posts = Post::orderBy('id','desc')->where('visible', 1)->paginate(16);
         return view('posts.index', ['posts' => $posts, 'weather' => $weather->getLocalWeather()]);
     }
 

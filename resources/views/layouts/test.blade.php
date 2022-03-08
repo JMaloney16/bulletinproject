@@ -18,7 +18,7 @@
 
 <body class="font-sans antialiased">
 
-    <div class="bg-bg-autumn">
+    <div class="bg-bg-autumn min-h-screen">
         @if (Route::has('login'))
             @auth
                 @livewire('navigation-dropdown')
@@ -43,9 +43,6 @@
                         @livewire('comment-notification')
                     </h2>
                     <div>
-                        @if (session('message'))
-                            <p class="py-4 text-gray-100"><b>{{ session('message') }}</b></p>
-                        @endif
                         @yield('headerBar')
                     </div>
                 </div>
@@ -53,8 +50,11 @@
 
             <!-- Page Content -->
             <main>
+                @if (session('message'))
+                            <p class="container mx-auto py-4 bg-white rounded-lg shadow-lg my-2 pb-2 pt-2 mx-auto px-4 justify-center md:px-8"><b>{{ session('message') }}</b></p>
+                @endif
                 @if ($errors->any())
-                    <div>
+                    <div class="container mx-auto py-4 bg-white rounded-lg shadow-lg my-2 pb-2 pt-2 mx-auto px-4 justify-center md:px-8">
                         Errors:
                         <ul>
                             @foreach ($errors->all() as $error)

@@ -15,7 +15,7 @@
         <div class="flex flex-wrap justify-center my-1 lg:my-4">
             @foreach ($posts as $post)
                 <?php $user = $post->user; ?>
-                <div class="mx-2 pb-2 lg:w-1/4">
+                <div class="mx-2 pb-2 lg:w-1/3">
                     <article class="overflow-hidden bg-white rounded-lg shadow-lg">
                         @if (isset($post->image))
                             <a href="{{ route('posts.singlepost', [$post]) }}">
