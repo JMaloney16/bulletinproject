@@ -67,7 +67,7 @@
                 <div class="container mx-auto py-4">
                     <div class = "bg-white rounded-lg shadow-lg my-2 pb-2 pt-2 mx-auto px-4 justify-center md:px-8">
                         This display/website is part of a research project by Jack Maloney (991384), intended to replicate a traditional bulletin board. 
-                        Please feel free to interact with it either on the device itself or on your own devices at: shorturl.at/eoHK5
+                        Please feel free to interact with it either on the device itself or on your own devices at: https://tinyurl.com/bpswan
                     </div>
                     @yield('content')
                 </div>
