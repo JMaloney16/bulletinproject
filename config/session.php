@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('SESSION_DOMAIN', thawing-refuge-69869.herokuapp.com),
 
     /*
     |--------------------------------------------------------------------------
