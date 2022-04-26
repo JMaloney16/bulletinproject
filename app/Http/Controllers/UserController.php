@@ -18,7 +18,8 @@ class UserController extends Controller
     public function show(User $user)
     {
         $comments = Comment::where('user_id', '=', $user->id)->paginate(10);
-        return view('users.show', ['user' => $user, 'comments' => $comments]);
+        $posts = Post::where('user_id', '=', $user->id)->paginate(10);
+        return view('users.show', ['user' => $user, 'comments' => $comments, 'posts' => $posts]);
     }
 
     public function adminView(){

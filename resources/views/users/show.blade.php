@@ -14,6 +14,19 @@
                 @endif
             </div>
             
+            <h2 class="text-lg font-semibold my-4 pt-4">Posts</h2>
+            <ul>
+                @foreach ($posts as $post)
+                    @if($post->visible)
+                    <li>{{ $post->created_at }}<a class="hover:underline"
+                            href="{{ route('posts.singlepost', ['post' => $post->id]) }}">{{ $post->title }}</a>
+                    </li>
+                    <br>
+                    @endif
+                @endforeach
+                {{ $posts->links() }}
+            </ul>
+
             <h2 class="text-lg font-semibold my-4 pt-4">Comments</h2>
             <ul>
                 @foreach ($comments as $comment)
@@ -28,6 +41,7 @@
                 @endforeach
                 {{ $comments->links() }}
             </ul>
+
             @if((Auth::user()->is_admin == 1) && ($user->is_admin == 0))
             <a href="{{route('users.makeadmin', ['user' => $user]) }}"><button
                 class="bg-gray-100 rounded-lg shadow-md px-2 py-2 border-black hover:bg-white hover:border-2">Make admin</button></a>
